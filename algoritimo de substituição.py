@@ -76,9 +76,9 @@ class AlgoritimoSubstitucao():
                 temporizador[tempo] += 1
 
         print(f"Cache {', '.join([str(int) for int in cache])}")
-        print(f"miss compulsoria {miss_compulsoria}")
         print(f"HIT {hit}")
-        print(f"miss capacidade {miss_capacidade}")
+        print(f"MISS compulsoria {miss_compulsoria}")
+        print(f"MISS capacidade {miss_capacidade}")
         print(f"{len(substituidos)} Substituições")
 
     def lfu(self):
@@ -120,9 +120,9 @@ class AlgoritimoSubstitucao():
                 indicador = 0
 
         print(f"Cache {', '.join([str(int) for int in cache])}")
-        print(f"miss compulsoria {miss_compulsoria}")
         print(f"HIT {hit}")
-        print(f"miss capacidade {miss_capacidade}")
+        print(f"MISS compulsoria {miss_compulsoria}")
+        print(f"MISS capacidade {miss_capacidade}")
         print(f"{len(substituidos)} Substituições")
 
     def fifo(self):
@@ -159,9 +159,9 @@ class AlgoritimoSubstitucao():
                 indicador = 0
 
         print(f"Cache {', '.join([str(int) for int in cache])}")
-        print(f"miss compulsoria {miss_compulsoria}")
         print(f"HIT {hit}")
-        print(f"miss capacidade {miss_capacidade}")
+        print(f"MISS compulsoria {miss_compulsoria}")
+        print(f"MISS capacidade {miss_capacidade}")
         print(f"{len(substituidos)} Substituições")
 
 
