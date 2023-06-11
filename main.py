@@ -2,6 +2,7 @@ from gerador import Gerador
 from fifo import Fifo
 from lru import LRU
 from segundaChance import Clock
+from nru import NRU
 
 def main():
     gerador = Gerador()
@@ -10,6 +11,7 @@ def main():
     fifo = Fifo()
     lru = LRU()
     clock=Clock()
+    nru=NRU()
 
     tabela = gerador.gera_tabela_paginas(total_paginas)
     acessos = gerador.gera_acessos(total_paginas, n_acessos)
@@ -17,11 +19,14 @@ def main():
     tabela_fifo = [linha[:] for linha in tabela]
     tabela_lru = [linha[:] for linha in tabela]
     tabela_clock = [linha[:] for linha in tabela]
+    tabela_nru=[linha[:] for linha in tabela]
 
     print("Em uma sequencia de ", n_acessos, " acessos, com ", total_paginas, " páginas distintas e ", n_quadros, " quadros, temos:")
     print("Fifo: ", fifo.simulador(tabela_fifo, n_quadros, acessos), " page faults")
     print("LRU: ", lru.simulador(tabela_lru, n_quadros, acessos), " page faults")
     print("CLOCK: ", clock.simulador(tabela_clock, n_quadros, acessos), " page faults")
+    print("NRU: ", nru.simulador(tabela_nru, n_quadros, acessos), " page faults")
+
 
 
 
