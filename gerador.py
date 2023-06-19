@@ -1,16 +1,13 @@
 import random
 
 class Gerador:
-    def __init__(self):
-        pass
+    def gera_acessos(self, paginas_distintas: int, n_acessos: int):
+        return [random.randint(1, paginas_distintas) for i in range(n_acessos)]
     
-    def gera_acessos(self, paginas_distintas, n_acessos):
-        return [random.randint(0, paginas_distintas-1) for i in range(n_acessos)]
-    
-    def gera_tabela_paginas(self, paginas_distintas):
+    def gera_tabela_paginas(self, paginas_distintas: int):
         tabela_paginas = []
-        for i in range(paginas_distintas):
-            tabela_paginas.append([0, i])
+        for i in range(1, paginas_distintas+1):
+            tabela_paginas.append([i, 0, 0, 0])  # [pagina, bitP/A, bitR, bitM]
 
         return tabela_paginas
     

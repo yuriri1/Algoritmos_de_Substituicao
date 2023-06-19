@@ -1,29 +1,23 @@
 from collections import deque
 
 class Fifo:
-    def __init__(self):
-        pass
-
-    def simulador(self, tabela_cpy, n_quadros, acessos):
+    def simulador(self, tabela: list, n_quadros: int, acessos: list):
         page_fault = 0
-        quadros_alocados = 0
-        tabela = tabela_cpy.copy()
-        fila = deque()
+        quadros = deque()
 
         for acesso in acessos:
-            for pagina in tabela:
-                if acesso == pagina[1] and pagina[0] == 0:
-                    if quadros_alocados < n_quadros:
-                        pagina[0] = 1
+            for pagina in tabela: # [pagina, bitP/A, bitR, bitM]
+                if acesso == pagina[0] and pagina[1] == 0:
+                    if len(quadros) < n_quadros:
+                        pagina[1] = 1
                         page_fault += 1
-                        quadros_alocados += 1
-                        fila.append(pagina)
+                        quadros.append(pagina)
                         break
                     else:
-                        pagina_substituida = fila.popleft()
-                        pagina_substituida[0] = 0
-                        pagina[0] = 1
-                        fila.append(pagina)
+                        pagina_substituida = quadros.popleft()
+                        pagina_substituida[1] = 0
+                        pagina[1] = 1
+                        quadros.append(pagina)
                         page_fault += 1
                         break
 

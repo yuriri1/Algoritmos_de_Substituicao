@@ -1,32 +1,26 @@
 from collections import deque
 
 class LRU:
-    def __init__(self):
-        pass
-
-    def simulador(self, tabela, n_quadros, acessos):
+    def simulador(self, tabela: list, n_quadros: int, acessos: int):
         page_fault = 0
-        quadros_alocados = 0
         fila = deque()
 
         for acesso in acessos:
             for pagina in tabela:
-                if acesso == pagina[1] and pagina[0] == 0:
-                    if quadros_alocados < n_quadros:
-                        pagina[0] = 1
+                if acesso == pagina[0] and pagina[1] == 0:
+                    if len(fila) < n_quadros:
+                        pagina[1] = 1
                         page_fault += 1
-                        quadros_alocados += 1
                         fila.append(pagina)
                         break
                     else:
                         pagina_substituida = fila.popleft()
-                        pagina_substituida[0] = 0
-                        pagina[0] = 1
+                        pagina_substituida[1] = 0
+                        pagina[1] = 1
                         fila.append(pagina)
                         page_fault += 1
                         break
-                elif acesso == pagina[1] and pagina[0] == 1:
-                    # Atualiza a posição da página na fila
+                elif acesso == pagina[0] and pagina[1] == 1:
                     fila.remove(pagina)
                     fila.append(pagina)
                     break
